@@ -1,3 +1,4 @@
+import { FeaturedProject } from "@/components/home/featured-project";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionLabel } from "@/components/ui/section-label";
@@ -21,7 +22,9 @@ export function WorkSection() {
           tools, and infrastructure.
         </p>
 
-        <div className="mt-16 h-80 border border-border md:mt-20" />
+        <div className="mt-16 border-t border-border pt-10 md:mt-20 md:pt-12">
+          <FeaturedProject />
+        </div>
       </Container>
     </Section>
   );
