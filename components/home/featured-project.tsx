@@ -36,12 +36,12 @@ export function FeaturedProject() {
       <div className="mt-12 border border-border bg-white lg:col-span-7 lg:mt-0">
         <iframe
           src={deploymentUrl}
-          title="Census AI Connect — live preview"
+          title="Census AI Connect live project preview"
           loading="lazy"
           referrerPolicy="no-referrer"
           tabIndex={-1}
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-          className="h-[420px] w-full md:h-[560px]"
+          className="block h-[420px] w-full md:h-[560px] xl:h-[600px]"
         />
         <p className="border-t border-border px-4 py-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground">
           Live site · Demonstration prototype
