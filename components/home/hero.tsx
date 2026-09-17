@@ -36,11 +36,11 @@ export function Hero() {
     >
       <Container className="flex flex-1 flex-col justify-between">
         <div className="lg:flex lg:items-start lg:justify-between lg:gap-20">
-          <div className="lg:max-w-2xl">
+          <div className="lg:max-w-3xl">
             <motion.div {...reveal(0.5, 8, 0.15)}>
               <SectionLabel number="01">Intro</SectionLabel>
             </motion.div>
-            <h1 className="mt-8 max-w-4xl text-4xl font-semibold uppercase leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="mt-8 max-w-4xl text-[2rem] font-semibold uppercase leading-[1.08] tracking-tight sm:text-5xl md:text-6xl xl:text-7xl">
               <motion.span className="block" {...reveal(0.7, 20, 0.25)}>
                 I build things
               </motion.span>

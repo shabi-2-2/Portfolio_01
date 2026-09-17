@@ -49,6 +49,7 @@
 }
 
 :root {
+  color-scheme: light;
   --background: #f7f7f3;
   --foreground: #111111;
   --card: #f7f7f3;
@@ -84,6 +85,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: #111111;
   --foreground: #ecece7;
   --card: #111111;
@@ -122,7 +124,7 @@
     @apply border-border outline-ring/50;
   }
   html {
-    @apply font-sans scroll-smooth;
+    @apply scroll-smooth bg-background font-sans;
   }
   body {
     @apply bg-background text-foreground antialiased;
