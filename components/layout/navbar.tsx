@@ -79,7 +79,7 @@ export function Navbar() {
       }
       animate={{ opacity: 1, y: 0 }}
       transition={
-        shouldReduceMotion ? { duration: 0 } : { duration: 0.3, ease: "easeOut" }
+        shouldReduceMotion ? { duration: 0 } : { duration: 0.45, ease: "easeOut" }
       }
     >
       <Container>
