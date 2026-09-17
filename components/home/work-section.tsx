@@ -1,4 +1,6 @@
 import { FeaturedProject } from "@/components/home/featured-project";
+import { ProjectEntry } from "@/components/home/project-entry";
+import { projects } from "@/components/home/projects";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionLabel } from "@/components/ui/section-label";
@@ -24,6 +26,17 @@ export function WorkSection() {
 
         <div className="mt-16 border-t border-border pt-10 md:mt-20 md:pt-12">
           <FeaturedProject />
+        </div>
+
+        <div className="mt-20 md:mt-24">
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Additional work
+          </p>
+          <div className="mt-2">
+            {projects.map((project) => (
+              <ProjectEntry key={project.number} project={project} />
+            ))}
+          </div>
         </div>
       </Container>
     </Section>
