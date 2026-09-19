@@ -44,6 +44,7 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
+              className="py-2"
             >
               View project
             </ArrowLink>
@@ -54,6 +55,7 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
+              className="py-2"
             >
               GitHub
             </ArrowLink>

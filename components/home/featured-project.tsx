@@ -9,7 +9,7 @@ const metadataLineClasses =
 export function FeaturedProject() {
   return (
     <article className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-16">
-      <div className="lg:col-span-5">
+      <div className="min-w-0 lg:col-span-5">
         <p className="font-mono text-sm font-medium text-muted-foreground">
           01
         </p>
@@ -33,7 +33,7 @@ export function FeaturedProject() {
         </div>
       </div>
 
-      <div className="mt-12 border border-border bg-white lg:col-span-7 lg:mt-0">
+      <div className="mt-12 min-w-0 border border-border bg-white lg:col-span-7 lg:mt-0">
         <iframe
           src={deploymentUrl}
           title="Census AI Connect live project preview"
@@ -53,6 +53,7 @@ export function FeaturedProject() {
           href={deploymentUrl}
           target="_blank"
           rel="noopener noreferrer"
+          className="py-2"
         >
           View project
         </ArrowLink>
@@ -60,6 +61,7 @@ export function FeaturedProject() {
           href={repositoryUrl}
           target="_blank"
           rel="noopener noreferrer"
+          className="py-2"
         >
           GitHub
         </ArrowLink>
