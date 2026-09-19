@@ -13,7 +13,7 @@ export const projects: Project[] = [
     number: "02",
     title: "BrainWorks",
     description:
-      "A proposal for safe operation of open-cast mine vehicles in fog and low visibility — V2X mesh networking, LoRa peer-to-peer links, 24 GHz mmWave radar, and dual-tier sensor fusion. Idea submission; no physical prototype built.",
+      "A proposal for safe operation of open-cast mine vehicles in fog and low visibility — V2X mesh networking, LoRa peer-to-peer links, 24 GHz mmWave radar, and dual-tier sensor fusion. Idea submission; prototype built is in Progress.",
     metadata: ["AI", "Hardware", "Systems"],
     year: "2026",
   },
