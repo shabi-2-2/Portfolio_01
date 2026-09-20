@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Check, Copy } from "lucide-react";
 
 import { ArrowLink } from "@/components/ui/arrow-link";
 import { Container } from "@/components/layout/container";
@@ -28,14 +30,18 @@ type ContactMethod = {
   value: string;
   href: string;
   external?: boolean;
+  copyable?: boolean;
 };
+
+const EMAIL = "zhrizvi476@gmail.com";
 
 const contactMethods: ContactMethod[] = [
   {
     number: "01",
     label: "Email",
-    value: "zhrizvi476@gmail.com",
-    href: "mailto:zhrizvi476@gmail.com",
+    value: EMAIL,
+    href: `mailto:${EMAIL}`,
+    copyable: true,
   },
   {
     number: "02",
@@ -55,6 +61,30 @@ const contactMethods: ContactMethod[] = [
 
 export function ContactSection() {
   const reveal = useRevealInView();
+
+  const [copied, setCopied] = useState(false);
+  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+    };
+  }, []);
+
+  const handleCopy = async () => {
+    if (typeof navigator === "undefined" || !navigator.clipboard?.writeText) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+      resetTimerRef.current = setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable — the mailto link remains the primary action.
+    }
+  };
 
   return (
     <Section id="contact" className="scroll-mt-20 pb-28 pt-8 md:pb-36 md:pt-12">
@@ -99,15 +129,36 @@ export function ContactSection() {
                     {method.label}
                   </h3>
                 </div>
-                <ArrowLink
-                  href={method.href}
-                  {...(method.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  className="break-all font-mono text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground"
-                >
-                  {method.value}
-                </ArrowLink>
+                <div className="flex min-w-0 flex-wrap items-center gap-3">
+                  <ArrowLink
+                    href={method.href}
+                    {...(method.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="break-all font-mono text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground"
+                  >
+                    {method.value}
+                  </ArrowLink>
+                  {method.copyable && (
+                    <button
+                      type="button"
+                      onClick={handleCopy}
+                      className="inline-flex items-center gap-1.5 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-200 motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      {copied ? (
+                        <Check aria-hidden="true" className="size-3.5" />
+                      ) : (
+                        <Copy aria-hidden="true" className="size-3.5" />
+                      )}
+                      {copied ? "Copied" : "Copy"}
+                    </button>
+                  )}
+                  {copied && (
+                    <span role="status" className="sr-only">
+                      Email copied
+                    </span>
+                  )}
+                </div>
               </motion.li>
             ))}
           </ul>

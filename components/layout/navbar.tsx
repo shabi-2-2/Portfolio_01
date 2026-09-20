@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Dialog } from "@base-ui/react/dialog";
+import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
@@ -65,24 +66,15 @@ function useActiveSection(ids: string[]) {
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLHeadingElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
   const activeSection = useActiveSection(sectionIds);
 
   const closeMenu = () => setMenuOpen(false);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [menuOpen]);
-
   return (
     <motion.header
+      ref={headerRef}
       className="sticky top-0 z-50 border-b border-border bg-background"
       initial={
         shouldReduceMotion
@@ -94,8 +86,13 @@ export function Navbar() {
         shouldReduceMotion ? { duration: 0 } : { duration: 0.45, ease: "easeOut" }
       }
     >
-      <Container>
-        <div className="flex items-center justify-between py-6 md:py-7">
+      <Dialog.Root
+        open={menuOpen}
+        onOpenChange={(open) => setMenuOpen(open)}
+        modal="trap-focus"
+      >
+        <Container>
+          <div className="flex items-center justify-between py-6 md:py-7">
           <Link
             href="/"
             className="font-medium tracking-tight text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -141,12 +138,9 @@ export function Navbar() {
             </ArrowLink>
           </nav>
 
-          <button
+          <Dialog.Trigger
             type="button"
-            onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
             className="inline-flex items-center justify-center p-1 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:hidden"
           >
             {menuOpen ? (
@@ -154,57 +148,45 @@ export function Navbar() {
             ) : (
               <Menu aria-hidden="true" className="size-5" />
             )}
-          </button>
+          </Dialog.Trigger>
         </div>
       </Container>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.nav
-            id="mobile-nav"
-            aria-label="Mobile"
-            initial={
-              shouldReduceMotion
-                ? { opacity: 1, height: "auto" }
-                : { opacity: 0, height: 0 }
-            }
-            animate={{ opacity: 1, height: "auto" }}
-            exit={
-              shouldReduceMotion
-                ? { opacity: 1, height: "auto" }
-                : { opacity: 0, height: 0 }
-            }
-            transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : { duration: 0.25, ease: "easeOut" }
-            }
-            className="overflow-hidden border-t border-border md:hidden"
-          >
-            <Container className="flex flex-col py-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={closeMenu}
-                  className="py-2.5 text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  {item.label}
-                </a>
-              ))}
-              <ArrowLink
-                href={githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+      <Dialog.Portal container={headerRef}>
+        <Dialog.Popup
+          className="border-t border-border bg-background transition-opacity duration-200 ease-out data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 motion-reduce:transition-none md:hidden"
+        >
+        <Dialog.Title className="sr-only">Menu</Dialog.Title>
+        <nav
+          id="mobile-nav"
+          aria-label="Mobile"
+          className="overflow-hidden"
+        >
+          <Container className="flex flex-col py-4">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
                 onClick={closeMenu}
-                className="py-2.5 text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground"
+                className="py-2.5 text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                GitHub
-              </ArrowLink>
-            </Container>
-          </motion.nav>
-        )}
-      </AnimatePresence>
+                {item.label}
+              </a>
+            ))}
+            <ArrowLink
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="py-2.5 text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              GitHub
+            </ArrowLink>
+          </Container>
+        </nav>
+        </Dialog.Popup>
+      </Dialog.Portal>
+      </Dialog.Root>
     </motion.header>
   );
 }
