@@ -11,8 +11,8 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Work", href: "#work" },
-  { label: "Writing", href: "#writing" },
   { label: "About", href: "#about" },
+  { label: "Writing", href: "#writing" },
 ] as const;
 
 const sectionIds = navItems.map((item) => item.href.slice(1));
@@ -30,22 +30,33 @@ function useActiveSection(ids: string[]) {
       .filter((el: HTMLElement | null): el is HTMLElement => el !== null);
     if (sections.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const intersecting = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
-          );
-        if (intersecting.length > 0) {
-          setActiveId(intersecting[0].target.id);
+    const update = () => {
+      const reference = window.innerHeight * 0.4;
+      let active: string | null = null;
+      let closestTop = -Infinity;
+
+      sections.forEach((section) => {
+        const top = section.getBoundingClientRect().top;
+        if (top <= reference && top > closestTop) {
+          closestTop = top;
+          active = section.id;
         }
-      },
-      { rootMargin: "-40% 0px -55% 0px" },
-    );
+      });
+
+      setActiveId(active);
+    };
+
+    const observer = new IntersectionObserver(update, {
+      rootMargin: "-40% 0px -40% 0px",
+    });
 
     sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    update();
+    window.addEventListener("resize", update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", update);
+    };
   }, [ids]);
 
   return activeId;
