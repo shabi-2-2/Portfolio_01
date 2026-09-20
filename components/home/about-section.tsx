@@ -14,8 +14,13 @@ export function AboutSection() {
         </h2>
 
         <div className="mt-16 md:mt-20">
-          <div className="min-h-44 border border-border p-8 md:min-h-56 md:p-10">
-            <div className="min-h-40 md:min-h-48" />
+          <div className="border border-border p-8 md:p-10">
+            <p className="max-w-2xl text-lg leading-relaxed text-foreground md:text-xl">
+              I&apos;m Shabi — a BTech student who likes understanding how
+              things work by building them. I work across AI, full-stack
+              applications, developer tools, and infrastructure, and I learn
+              best by turning ideas into working systems.
+            </p>
           </div>
         </div>
 
@@ -24,21 +29,49 @@ export function AboutSection() {
             <h3 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Currently
             </h3>
-            <div className="mt-6 min-h-40 border-t border-border md:min-h-48" />
+            <div className="mt-6 border-t border-border pt-6">
+              <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+                BTech student, currently building across AI, full-stack
+                development, developer tooling, and infrastructure.
+              </p>
+            </div>
           </div>
 
           <div className="border-t border-border pb-14 pt-10 md:pt-12 lg:border-t-0 lg:border-r lg:border-border">
             <h3 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Focus
             </h3>
-            <div className="mt-6 min-h-40 border-t border-border md:min-h-48" />
+            <ul className="mt-6 border-t border-border pt-6 space-y-2.5">
+              <li className="text-sm leading-relaxed text-foreground md:text-base">
+                AI
+              </li>
+              <li className="text-sm leading-relaxed text-foreground md:text-base">
+                Full-stack engineering
+              </li>
+              <li className="text-sm leading-relaxed text-foreground md:text-base">
+                Systems &amp; infrastructure
+              </li>
+              <li className="text-sm leading-relaxed text-foreground md:text-base">
+                Developer tooling
+              </li>
+            </ul>
           </div>
 
           <div className="border-t border-border pb-14 pt-10 md:pt-12 lg:border-t-0">
             <h3 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Exploring
             </h3>
-            <div className="mt-6 min-h-40 border-t border-border md:min-h-48" />
+            <ul className="mt-6 border-t border-border pt-6 space-y-2.5">
+              <li className="text-sm leading-relaxed text-foreground md:text-base">
+                Deep learning from scratch
+              </li>
+              <li className="text-sm leading-relaxed text-foreground md:text-base">
+                Agentic AI
+              </li>
+              <li className="text-sm leading-relaxed text-foreground md:text-base">
+                New systems through hands-on projects
+              </li>
+            </ul>
           </div>
         </div>
       </Container>
