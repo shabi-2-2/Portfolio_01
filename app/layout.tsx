@@ -13,9 +13,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shabi Haidar Rizvi",
+  title: "Shabi Haidar Rizvi — Full-Stack · AI · DevOps",
   description:
-    "Portfolio of Shabi Haidar Rizvi — developer, builder, and open-source contributor.",
+    "Shabi Haidar Rizvi's portfolio — building across AI, full-stack applications, developer tools, and infrastructure.",
+  applicationName: "Shabi Haidar Rizvi",
+  openGraph: {
+    title: "Shabi Haidar Rizvi — Full-Stack · AI · DevOps",
+    description:
+      "Shabi Haidar Rizvi's portfolio — building across AI, full-stack applications, developer tools, and infrastructure.",
+    type: "website",
+    siteName: "Shabi Haidar Rizvi",
+  },
+  twitter: {
+    card: "summary",
+    title: "Shabi Haidar Rizvi — Full-Stack · AI · DevOps",
+    description:
+      "Shabi Haidar Rizvi's portfolio — building across AI, full-stack applications, developer tools, and infrastructure.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
