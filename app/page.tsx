@@ -5,6 +5,7 @@ import { OpenSourceSection } from "@/components/home/open-source-section";
 import { WorkSection } from "@/components/home/work-section";
 import { WritingSection } from "@/components/home/writing-section";
 import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <WritingSection />
         <ContactSection />
       </main>
+      <Footer />
     </>
   );
 }
