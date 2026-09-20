@@ -1,3 +1,5 @@
+import { OpenSourceEntry } from "@/components/home/open-source-entry";
+import { openSourceEntries } from "@/components/home/open-source";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionLabel } from "@/components/ui/section-label";
@@ -26,7 +28,13 @@ export function OpenSourceSection() {
             <h3 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Open Source
             </h3>
-            <div className="mt-6 min-h-40 border-t border-border md:min-h-48" />
+            <div className="mt-6">
+              <div className="border-t border-border">
+                {openSourceEntries.map((entry) => (
+                  <OpenSourceEntry key={entry.number} entry={entry} />
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="border-t border-border pb-14 pt-10 md:pt-14 lg:border-t-0">
