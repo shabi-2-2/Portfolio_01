@@ -143,14 +143,16 @@ export function ContactSection() {
                     <button
                       type="button"
                       onClick={handleCopy}
-                      className="inline-flex items-center gap-1.5 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-200 motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="-my-1 inline-flex items-center gap-1.5 py-1 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-200 motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       {copied ? (
                         <Check aria-hidden="true" className="size-3.5" />
                       ) : (
                         <Copy aria-hidden="true" className="size-3.5" />
                       )}
-                      {copied ? "Copied" : "Copy"}
+                      <span className="inline-block min-w-[3.75rem] text-left">
+                        {copied ? "Copied" : "Copy"}
+                      </span>
                     </button>
                   )}
                   {copied && (
