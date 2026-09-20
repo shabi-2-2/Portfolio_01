@@ -47,7 +47,7 @@ function useActiveSection(ids: string[]) {
     };
 
     const observer = new IntersectionObserver(update, {
-      rootMargin: "-40% 0px -40% 0px",
+      rootMargin: "-30% 0px -60% 0px",
     });
 
     sections.forEach((section) => observer.observe(section));
