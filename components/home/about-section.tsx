@@ -41,19 +41,11 @@ export function AboutSection() {
             <h3 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Focus
             </h3>
-            <ul className="mt-6 border-t border-border pt-6 space-y-2.5">
-              <li className="text-sm leading-relaxed text-foreground md:text-base">
-                AI
-              </li>
-              <li className="text-sm leading-relaxed text-foreground md:text-base">
-                Full-stack engineering
-              </li>
-              <li className="text-sm leading-relaxed text-foreground md:text-base">
-                Systems &amp; infrastructure
-              </li>
-              <li className="text-sm leading-relaxed text-foreground md:text-base">
-                Developer tooling
-              </li>
+            <ul className="mt-6 list-none space-y-2.5 border-t border-border pt-6 text-sm leading-relaxed text-foreground md:text-base">
+              <li>AI</li>
+              <li>Full-stack engineering</li>
+              <li>Systems &amp; infrastructure</li>
+              <li>Developer tooling</li>
             </ul>
           </div>
 
@@ -61,16 +53,10 @@ export function AboutSection() {
             <h3 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Exploring
             </h3>
-            <ul className="mt-6 border-t border-border pt-6 space-y-2.5">
-              <li className="text-sm leading-relaxed text-foreground md:text-base">
-                Deep learning from scratch
-              </li>
-              <li className="text-sm leading-relaxed text-foreground md:text-base">
-                Agentic AI
-              </li>
-              <li className="text-sm leading-relaxed text-foreground md:text-base">
-                New systems through hands-on projects
-              </li>
+            <ul className="mt-6 list-none space-y-2.5 border-t border-border pt-6 text-sm leading-relaxed text-foreground md:text-base">
+              <li>Deep learning from scratch</li>
+              <li>Agentic AI</li>
+              <li>New systems through hands-on projects</li>
             </ul>
           </div>
         </div>
