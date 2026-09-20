@@ -8,7 +8,7 @@ export function WritingEntry({ entry }: { entry: WritingEntryData }) {
   return (
     <article
       className={cn(
-        "border-b border-border py-9 last:border-b-0 md:py-11",
+        "py-9 md:py-11",
         hasLink &&
           "group transition-colors duration-200 motion-reduce:transition-none hover:bg-muted/30 focus-within:bg-muted/30",
       )}

@@ -53,6 +53,7 @@ export function WritingSection() {
               <motion.div
                 key={entry.number}
                 {...reveal(0.4, 12, 0.2 + index * 0.1)}
+                className="border-b border-border last:border-b-0"
               >
                 <WritingEntry entry={entry} />
               </motion.div>
