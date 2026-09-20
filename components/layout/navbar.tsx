@@ -13,6 +13,7 @@ const navItems = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Writing", href: "#writing" },
+  { label: "Contact", href: "#contact" },
 ] as const;
 
 const sectionIds = navItems.map((item) => item.href.slice(1));
