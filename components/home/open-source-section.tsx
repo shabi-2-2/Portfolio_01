@@ -26,7 +26,7 @@ export function OpenSourceSection() {
         <div className="mt-16 grid border-t border-border md:mt-20 lg:grid-cols-2 lg:gap-16">
           <div className="pb-14 pt-10 md:pt-14 lg:border-r lg:border-border">
             <h3 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Open Source
+              Public Repositories
             </h3>
             <div className="mt-6">
               <div className="border-t border-border">

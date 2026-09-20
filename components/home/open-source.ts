@@ -19,7 +19,7 @@ export const openSourceEntries: OpenSourceEntry[] = [
     number: "02",
     name: "Rapid Crisis Response System",
     description:
-      "An IoT-ready, agentic AI emergency response system for hotels and resorts — incident reporting, real-time staff coordination, and Gemini-powered admin insights built on Firebase.",
+      "A web interface prototype for an IoT-oriented emergency response concept, exploring incident reporting, staff coordination, and AI-assisted administrative insights.",
     metadata: ["Next.js", "Firebase", "AI"],
     github: "https://github.com/shabi-2-2/SolutionsChallenge_RapidAssistanceSystem",
   },
