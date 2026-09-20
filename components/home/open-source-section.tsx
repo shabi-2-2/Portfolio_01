@@ -1,3 +1,5 @@
+import { ExperimentEntry } from "@/components/home/experiment-entry";
+import { experimentEntries } from "@/components/home/experiments";
 import { OpenSourceEntry } from "@/components/home/open-source-entry";
 import { openSourceEntries } from "@/components/home/open-source";
 import { Container } from "@/components/layout/container";
@@ -41,7 +43,13 @@ export function OpenSourceSection() {
             <h3 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Experiments
             </h3>
-            <div className="mt-6 min-h-40 border-t border-border md:min-h-48" />
+            <div className="mt-6">
+              <div className="border-t border-border">
+                {experimentEntries.map((entry) => (
+                  <ExperimentEntry key={entry.number} entry={entry} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </Container>
