@@ -2,6 +2,7 @@ import { AboutSection } from "@/components/home/about-section";
 import { Hero } from "@/components/home/hero";
 import { OpenSourceSection } from "@/components/home/open-source-section";
 import { WorkSection } from "@/components/home/work-section";
+import { WritingSection } from "@/components/home/writing-section";
 import { Navbar } from "@/components/layout/navbar";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
         <WorkSection />
         <OpenSourceSection />
         <AboutSection />
+        <WritingSection />
       </main>
     </>
   );
