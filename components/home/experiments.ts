@@ -12,7 +12,7 @@ export const experimentEntries: ExperimentEntry[] = [
     number: "01",
     title: "Neural Networks: Zero to Hero",
     description:
-      "Learning implementations while working through Andrej Karpathy's Neural Networks: Zero to Hero.",
+      "Learning implementations while working through Andrej Karpathy's \"Neural Networks: Zero to Hero.\"",
     metadata: ["Python", "Deep Learning", "From Scratch"],
     status: "In Progress · 4 Lectures",
     courseHref:
