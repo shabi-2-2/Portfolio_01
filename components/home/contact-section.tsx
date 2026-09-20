@@ -1,7 +1,26 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+
 import { ArrowLink } from "@/components/ui/arrow-link";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionLabel } from "@/components/ui/section-label";
+
+const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+function useRevealInView() {
+  const shouldReduceMotion = useReducedMotion() ?? false;
+
+  return (duration: number, y: number, delay: number) => ({
+    initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.2 },
+    transition: shouldReduceMotion
+      ? { duration: 0 }
+      : { duration, ease: EASE_OUT, delay },
+  });
+}
 
 type ContactMethod = {
   number: string;
@@ -35,36 +54,48 @@ const contactMethods: ContactMethod[] = [
 ];
 
 export function ContactSection() {
+  const reveal = useRevealInView();
+
   return (
     <Section id="contact" className="scroll-mt-20 pb-28 pt-8 md:pb-36 md:pt-12">
       <Container>
         <SectionLabel number="06">Contact</SectionLabel>
 
-        <h2 className="mt-8 text-[1.75rem] font-semibold uppercase leading-[1.08] tracking-tight sm:text-4xl md:text-5xl">
+        <motion.h2
+          {...reveal(0.4, 12, 0.05)}
+          className="mt-8 text-[1.75rem] font-semibold uppercase leading-[1.08] tracking-tight sm:text-4xl md:text-5xl"
+        >
           <span className="block">Let&apos;s</span>
           <span className="block">Build Something.</span>
-        </h2>
+        </motion.h2>
 
-        <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+        <motion.p
+          {...reveal(0.4, 12, 0.15)}
+          className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg"
+        >
           Have an idea, project, or something interesting to build? I&apos;d
           be happy to hear from you.
-        </p>
+        </motion.p>
 
         <div className="mt-16 md:mt-20">
-          <p className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          <motion.p
+            {...reveal(0.35, 10, 0.2)}
+            className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
+          >
             Reach me
-          </p>
+          </motion.p>
           <ul className="mt-2 border-t border-border">
-            {contactMethods.map((method) => (
-              <li
+            {contactMethods.map((method, index) => (
+              <motion.li
                 key={method.number}
-                className="flex flex-col gap-2 border-b border-border py-6 last:border-b-0 md:flex-row md:items-baseline md:justify-between md:gap-6 md:py-8"
+                {...reveal(0.35, 10, 0.24 + index * 0.07)}
+                className="group flex flex-col gap-2 border-b border-border py-6 transition-colors duration-200 motion-reduce:transition-none last:border-b-0 hover:bg-muted/30 focus-within:bg-muted/30 md:flex-row md:items-baseline md:justify-between md:gap-6 md:py-8"
               >
                 <div className="flex min-w-0 items-baseline gap-4">
-                  <p className="shrink-0 font-mono text-sm font-medium text-muted-foreground">
+                  <p className="shrink-0 font-mono text-sm font-medium text-muted-foreground transition-colors duration-200 motion-reduce:transition-none group-hover:text-foreground group-focus-within:text-foreground">
                     {method.number}
                   </p>
-                  <h3 className="text-lg font-semibold uppercase leading-tight tracking-tight md:text-xl">
+                  <h3 className="text-lg font-semibold uppercase leading-tight tracking-tight transition-transform duration-200 motion-safe:group-hover:translate-x-1 motion-safe:group-focus-within:translate-x-1 md:text-xl">
                     {method.label}
                   </h3>
                 </div>
@@ -77,7 +108,7 @@ export function ContactSection() {
                 >
                   {method.value}
                 </ArrowLink>
-              </li>
+              </motion.li>
             ))}
           </ul>
         </div>
