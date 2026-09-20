@@ -6,5 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
+    sitemap: "https://shabi01.vercel.app/sitemap.xml",
   };
 }

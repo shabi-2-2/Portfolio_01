@@ -13,16 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shabi01.vercel.app"),
   title: "Shabi Haidar Rizvi — Full-Stack · AI · DevOps",
   description:
     "Shabi Haidar Rizvi's portfolio — building across AI, full-stack applications, developer tools, and infrastructure.",
   applicationName: "Shabi Haidar Rizvi",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Shabi Haidar Rizvi — Full-Stack · AI · DevOps",
     description:
       "Shabi Haidar Rizvi's portfolio — building across AI, full-stack applications, developer tools, and infrastructure.",
     type: "website",
     siteName: "Shabi Haidar Rizvi",
+    url: "https://shabi01.vercel.app/",
   },
   twitter: {
     card: "summary",
