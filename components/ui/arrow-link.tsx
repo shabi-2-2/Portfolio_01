@@ -19,7 +19,7 @@ export function ArrowLink({ children, className, ...props }: ArrowLinkProps) {
       <span>{children}</span>
       <ArrowUpRight
         aria-hidden="true"
-        className="size-4 transition-transform duration-200 motion-reduce:transition-none group-hover:translate-x-[3px] group-hover:-translate-y-[3px] group-focus-visible:translate-x-[3px] group-focus-visible:-translate-y-[3px]"
+        className="size-4 transition-transform duration-200 motion-reduce:transition-none motion-safe:group-hover:translate-x-[3px] motion-safe:group-hover:-translate-y-[3px] motion-safe:group-focus-visible:translate-x-[3px] motion-safe:group-focus-visible:-translate-y-[3px]"
       />
     </Link>
   );
