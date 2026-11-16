@@ -1,0 +1,33 @@
+This is a structural draft article used to verify the blog content pipeline. It is not a finished publication and should not be treated as technical advice.
+
+> Draft: replace this placeholder content with the finished article before changing the metadata status to `published`.
+
+## What this article will cover
+
+The final article will explore how agentic systems are structured, with an emphasis on the parts that matter in a working application:
+
+- How an agent receives a goal and decides what to do next
+- Where tools and external systems fit into the loop
+- How to keep behaviour observable and failures recoverable
+
+## A placeholder example
+
+Inline code such as `agent.run()` keeps technical terms readable in prose.
+
+```ts
+type AgentStep = {
+  action: string;
+  input: Record<string, unknown>;
+};
+
+async function runStep(step: AgentStep): Promise<void> {
+  // Placeholder implementation for the eventual article example.
+  console.log(step.action, step.input);
+}
+```
+
+When the article is written, this section can be replaced with a complete example. For now it verifies that fenced code blocks render with their content intact.
+
+## Reference
+
+The placeholder link below verifies semantic link rendering: [MDX documentation](https://mdxjs.com/).
