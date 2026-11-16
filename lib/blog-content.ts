@@ -1,4 +1,5 @@
 import { existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { ComponentType } from "react";
 import type { MDXProps } from "mdx/types";
@@ -6,6 +7,10 @@ import type { MDXProps } from "mdx/types";
 import { articleRegistry } from "@/content/blog";
 import { getPostBySlug } from "@/lib/blog";
 import type { ArticleMetadata } from "@/lib/blog";
+import {
+  extractTableOfContents,
+  type TableOfContentsEntry,
+} from "@/lib/blog-toc";
 
 type MdxModule = {
   default: ComponentType<MDXProps>;
@@ -43,6 +48,33 @@ export function assertPostContentFilesExist(): void {
       )}. Add the matching file(s) under content/blog/posts/.`,
     );
   }
+}
+
+/**
+ * Reads the raw MDX source for a published article. Used for build-time
+ * metadata such as the table of contents.
+ */
+export async function loadPostSource(slug: string): Promise<string> {
+  if (!getPostBySlug(slug)) {
+    throw new Error(
+      `Cannot read MDX content for "${slug}" because it is not a published article.`,
+    );
+  }
+
+  try {
+    return await readFile(getPostContentFilePath(slug), "utf8");
+  } catch (error) {
+    throw new Error(
+      `Unable to read MDX content for blog slug "${slug}". Ensure content/blog/posts/${slug}.mdx exists and is readable.`,
+      { cause: error },
+    );
+  }
+}
+
+export async function loadPostTableOfContents(
+  slug: string,
+): Promise<TableOfContentsEntry[]> {
+  return extractTableOfContents(await loadPostSource(slug));
 }
 
 /**

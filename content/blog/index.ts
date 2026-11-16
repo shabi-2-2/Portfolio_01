@@ -13,7 +13,7 @@ export const articleRegistry = [
     slug: "building-agentic-ai-systems",
     title: "Building Agentic AI Systems",
     description:
-      "A draft placeholder for an article about building agentic AI systems. The final content will be written in a later phase.",
+      "Lessons from building agentic systems: execution planning, orchestration, guardrails, and the challenges of integrating agents into reliable workflows.",
     category: "AI Engineering",
     tags: ["AI", "Agents", "Architecture"],
     publishedAt: "2026-11-16",

@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 
-const withMDX = createMDX();
+const withMDX = createMDX({
+  options: {
+    // Turbopack requires plugin names as strings and serializable options.
+    rehypePlugins: [
+      "rehype-slug",
+      ["rehype-highlight", { detect: false, plainText: ["text", "txt"] }],
+    ],
+  },
+});
 
 export default withMDX(nextConfig);
