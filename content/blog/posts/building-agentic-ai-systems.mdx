@@ -1,33 +1,51 @@
-This is a structural draft article used to verify the blog content pipeline. It is not a finished publication and should not be treated as technical advice.
+# Building Agentic AI Systems: Lessons Beyond the Agent
 
-> Draft: replace this placeholder content with the finished article before changing the metadata status to `published`.
+Building agentic AI systems has been an interesting part of my journey so far. I've worked with and built a few agentic systems across my projects. Some of them performed really well independently, but integrating them correctly with the rest of the system was not always as successful.
 
-## What this article will cover
+That experience taught me something important: **an agent working correctly in isolation doesn't necessarily mean the entire system will work correctly.**
 
-The final article will explore how agentic systems are structured, with an emphasis on the parts that matter in a working application:
+While working on these projects, I came across three lessons that significantly changed how I think about building agentic systems.
 
-- How an agent receives a goal and decides what to do next
-- Where tools and external systems fit into the loop
-- How to keep behaviour observable and failures recoverable
+## 1. An Agent Is Only as Good as Its Execution Plan
 
-## A placeholder example
+One of the biggest lessons I learned is that agents can only perform as well as the plan of execution created for them.
 
-Inline code such as `agent.run()` keeps technical terms readable in prose.
+Giving an agent a goal is not enough. The system needs to define what needs to be done, how the task should be broken down, what dependencies exist between steps, and what should happen when something goes wrong.
 
-```ts
-type AgentStep = {
-  action: string;
-  input: Record<string, unknown>;
-};
+A poorly structured execution plan can lead to an agent taking unnecessary steps, producing inconsistent results, or failing to complete the intended task.
 
-async function runStep(step: AgentStep): Promise<void> {
-  // Placeholder implementation for the eventual article example.
-  console.log(step.action, step.input);
-}
-```
+The quality of the execution plan has a direct impact on the quality of the agent's output.
 
-When the article is written, this section can be replaced with a complete example. For now it verifies that fenced code blocks render with their content intact.
+## 2. Orchestration Is What Connects Individual Agents
 
-## Reference
+Another important lesson was understanding the role of the orchestration layer.
 
-The placeholder link below verifies semantic link rendering: [MDX documentation](https://mdxjs.com/).
+When working with multiple agents, getting each agent to perform its individual task is only one part of the problem. The real challenge is coordinating their execution and ensuring that their outputs are correctly passed to the next stage.
+
+Frameworks such as LangGraph provide ways to structure these workflows, manage state, define transitions, and coordinate execution between agents.
+
+Without a well-designed orchestration layer, even capable agents can struggle to work together as a cohesive system.
+
+## 3. Guardrails and Human Approval Are Not Optional Afterthoughts
+
+Agents can make decisions and execute actions, but that doesn't mean they should have unrestricted access to everything.
+
+I learned the importance of implementing:
+
+- **Strict permissions:** Agents should only have access to the tools and resources required for their assigned tasks.
+- **Deterministic and non-deterministic guardrails:** Validation and safety mechanisms should help control both predictable failures and less predictable agent behavior.
+- **Human approval checkpoints:** Sensitive, destructive, or high-impact actions should require explicit human authorization before execution.
+
+These mechanisms help prevent unauthorized actions, runaway execution, and potentially destructive operations.
+
+The goal isn't to eliminate an agent's autonomy. It's to ensure that autonomy operates within clearly defined boundaries.
+
+## What I Took Away
+
+Building agentic systems taught me to look beyond the individual agent.
+
+A capable agent is important, but a reliable agentic system depends on much more: a well-defined execution plan, a strong orchestration layer, controlled permissions, appropriate guardrails, and human oversight where necessary.
+
+I'm still exploring this space, and these lessons have influenced how I approach the design of agentic workflows in my projects.
+
+**The biggest takeaway for me: building an agent is one challenge; building a system that can reliably work with that agent is another.**
