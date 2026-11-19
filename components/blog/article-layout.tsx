@@ -110,11 +110,17 @@ export function ArticleLayout({
               previousPost={previousPost}
               nextPost={nextPost}
             />
+
+            {hasTableOfContents ? (
+              // Zero-visual sentinel used by the table of contents to activate
+              // its final entry when the reader reaches the end of the article.
+              <div aria-hidden="true" data-toc-end className="h-px" />
+            ) : null}
           </article>
 
           {hasTableOfContents ? (
-            <aside className="hidden lg:mt-1 lg:block">
-              <div className="sticky top-10">
+            <aside className="hidden lg:block lg:self-stretch">
+              <div className="sticky top-24">
                 <TableOfContents items={toc} />
               </div>
             </aside>
