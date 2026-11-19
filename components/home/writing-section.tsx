@@ -6,6 +6,7 @@ import { WritingEntry } from "@/components/home/writing-entry";
 import { writingEntries } from "@/components/home/writing";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { ArrowLink } from "@/components/ui/arrow-link";
 import { SectionLabel } from "@/components/ui/section-label";
 
 const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -59,6 +60,18 @@ export function WritingSection() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            {...reveal(0.4, 12, 0.2 + writingEntries.length * 0.1)}
+            className="border-t border-border pt-5 md:pt-6"
+          >
+            <ArrowLink
+              href="/blog"
+              className="py-1 text-xs uppercase tracking-[0.15em] text-muted-foreground transition-colors duration-200 motion-reduce:transition-none hover:text-foreground focus-visible:text-foreground sm:text-sm"
+            >
+              See Blog for more writings
+            </ArrowLink>
+          </motion.div>
         </div>
       </Container>
     </Section>
